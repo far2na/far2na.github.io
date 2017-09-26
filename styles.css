@@ -1,0 +1,13 @@
+body {
+	background-color: white;
+	padding-top: 70px;
+}
+
+p {
+	padding: 50px;
+}
+
+.my-navbar {
+  background-color: rgba(34, 34, 34, 0.49);
+  border: none;
+}
