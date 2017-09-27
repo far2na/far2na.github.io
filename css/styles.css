@@ -1,0 +1,44 @@
+html {
+	min-height: 100%;
+	position: relative;
+}
+body {
+  min-height: 100%;
+  padding-top: 50px;
+  /* Margin bottom by footer height */
+  margin-bottom: 40px;
+}
+
+.my-slider {
+	margin-bottom: 50px;
+	border: 1px solid white; 
+}
+
+.task_list {
+	font-size: 20px;
+}
+
+.task {
+	color: white;
+}
+
+.task:hover {
+	text-decoration: none;
+}
+
+.w-100 {
+	width: 100%;
+}
+
+.navbar-default .navbar-toggle .icon-bar {
+    background-color: black;
+}
+
+.footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 40px;
+    line-height: 40px;
+    background-color: #4e5d6c;
+}
