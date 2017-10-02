@@ -63,6 +63,8 @@
       </ol>
       <div class="container-fluid" id="content">
       </div>
+      <div id="modal-container">
+      </div>
   	</div>
 
 
@@ -146,7 +148,7 @@
       $(".thumbnail").click(function (event) {
       	var imgId = $(this).data("id");
       	var html = modal_template(data.images[imgId]);
-      	$('#content').html(html);
+      	$('#modal-container').html(html);
       	$('#imageModal').modal("show");
       });
       $('#searchbox').keypress(function (e) {
