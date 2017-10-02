@@ -5,8 +5,7 @@ html {
 body {
   min-height: 100%;
   padding-top: 50px;
-  /* Margin bottom by footer height */
-  margin-bottom: 40px;
+  padding-bottom: 50px;
 }
 
 .my-slider {

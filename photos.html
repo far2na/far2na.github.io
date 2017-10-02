@@ -1,11 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-   <title>Tasklist</title>
+    <title>Photo list</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <link href="css/bootstrap.css" rel="stylesheet">
     <link href="css/styles.css" rel="stylesheet">
     <link href="css/bootstrap_min_superhero.css" rel="stylesheet">
+    <script src="js/jquery.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/handlebars.js"></script>
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -31,17 +34,17 @@
 		        aria-expanded="false">
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
+            <span class="icon-bar"></span>  
+            </button>
   			</div>
   			<div class="collapse navbar-collapse" id="main_navbar">
 	  			<ul class="nav navbar-nav">
-	  				<li class="active"><a href="./index.html">Tasklist</a></li>
+            <li><a href="./index.html">Tasklist</a></li>
             <li><a href="./task.html">Task</a></li>
-            <li class="dropdown">
+            <li class="dropdown"  class="active">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Photos<span class="caret"></span></a>
               <ul class="dropdown-menu">
-                <li><a href="./photos.html">List</a></li>
+                <li  class="active"><a href="./photos.html">List</a></li>
                 <li><a href="#">Slideshow</a></li>
               </ul>
             </li>
@@ -51,29 +54,70 @@
   		</div>
   	</nav>
   	<div class="container-fluid">
-  		<h1>List of tasks</h1>
+  		<h1>Photo list</h1>
       <ol class="breadcrumb">
-        <li><a href="./index.html">Tasklist</a></li>
+        <li><a href="./photos.html">Photo list</a></li>
       </ol>
+      <div class="container-fluid" id="content">
+      </div>
   	</div>
-    <div class="task_list">
-      <ol>
-        <li><a href="task.html" class="task">Go to shopping</a></li>
-        <li><a href="task.html" class="task"><del>Have a breakfast</del></a></li>
-        <li><a href="task.html" class="task">Wash the dishes</a></li>
-        <li><a href="task.html" class="task">Clean up the house</a></li>
-        <li><a href="task.html" class="task"><del>Fill the car</del></a></li>
-        <li><a href="task.html" class="task">Iron the clothes</a></li>
-        <li><a href="task.html" class="task">Have a rest</a></li>
-        <li><a href="task.html" class="task">Go for a run</a></li>
-      </ol>
-    </div>
+
+
+
     <footer class="footer">
       <div class="container">
         <span>&copy;Todoist</span>
       </div>
     </footer>
-    <script src="js/jquery.min.js"></script>
-    <script src="js/bootstrap.min.js"></script>
+    <script id="image-template" type="text/x-handlebars-template">
+      <div>
+      	{{#each images}}
+      	<h3>{{title}}</h3>
+        <img  style="height:600px" src="{{src}}"/>
+        {{/each}}
+  	  </div>
+    </script>
+    <script type="text/javascript">
+      var data = {images: [
+      	{
+      		src: "./images/IMG_20161122_234013.jpg",
+      		title: "Resting cat"
+      	},
+      	{
+      		src: "./images/IMG_20161125_232245.jpg",
+      		title: "Sleeping cat"
+      	},
+      	{
+      		src: "./images/IMG_20161201_204857.jpg",
+      		title: "Frisky cat"
+      	},
+      	{
+      		src: "./images/IMG_20161231_122656.jpg",
+      		title: "New year cat"
+      	},
+      	{
+      		src: "./images/IMG_20170101_165055.jpg",
+      		title: "Cat & puzzle"
+      	},
+      	{
+      		src: "./images/IMG_20170416_171334.jpg",
+      		title: "Cat & iron"
+      	},
+      	{
+      		src: "./images/IMG_20170428_221216.jpg",
+      		title: "Cat on the table"
+      	},
+      	{
+      		src: "./images/IMG_20170810_183605.jpg",
+      		title: "O_o cat"
+      	} 
+      	]
+      };
+
+      var source   = $("#image-template").html();
+      var template = Handlebars.compile(source);
+      var html = template(data);
+      $('#content').html(html);
+    </script>
   </body>
 </html>
