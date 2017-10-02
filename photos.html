@@ -72,10 +72,27 @@
     <script id="image-template" type="text/x-handlebars-template">
       <div>
       	{{#each images}}
-      	<h3>{{title}}</h3>
-        <img  style="height:600px" src="{{src}}"/>
+      	<div class="col-xs-12 col-md-3">
+	      	<div class="thumbnail">
+		        <img src="{{src}}"/>
+		        <div class="caption">
+		        	<h3>{{title}}</h3>
+		    	</div>
+	    	</div>
+    	</div>
         {{/each}}
   	  </div>
+    </script>
+    <script id="modal-template" type="text/x-handlebars-template">
+      <div id="imageModal" class="modal fade" role="dialog">
+        <div class="modal-dialog"  style="width:800">
+          <div class="modal-content">
+            <div class="modal-body">
+              <img  style="width:100%" src="{{src}}"/>
+            </div>
+          </div>
+        </div>
+      </div>
     </script>
     <script type="text/javascript">
       var data = {images: [
@@ -113,11 +130,19 @@
       	} 
       	]
       };
+      var source   = $("#modal-template").html();
+      var modal_template = Handlebars.compile(source);
 
-      var source   = $("#image-template").html();
+      source   = $("#image-template").html();
       var template = Handlebars.compile(source);
       var html = template(data);
       $('#content').html(html);
+      function showModal() {
+      	var html = modal_template(data.images[0]);
+      	$('#content').html(html);
+      	$('#imageModal').modal("show");
+      }
+      /*showModal();*/
     </script>
   </body>
 </html>
