@@ -9,6 +9,8 @@
     <script src="js/jquery.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <script src="js/handlebars.js"></script>
+    <script src="js/albums.js"></script>
+    <script src="js/gallery.js"></script>
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -65,13 +67,35 @@
       <div id="content"  class="container-fluid"  role="main">
       </div>
   	</div>
-
-
-
     <footer class="footer">
       <div class="container">
         <span>&copy;Todoist</span>
       </div>
     </footer>
+
+    <script id="albums-template" type="text/x-handlebars-template">
+      <div class="row">
+        {{#each albums}}
+        <div class="col-xs-12 col-md-3">
+          <div class="thumbnail" data-id={{@index}}>
+            <img src="{{thumbnail}}"/>
+            <div class="caption">
+              <h4>{{name}}</h4>
+              <p>{{photos.length}} photos</p>
+          </div>
+        </div>
+      </div>
+        {{/each}}
+      </div>
+    </script>
+
+    <script type="text/javascript">
+      var source = $('#albums-template').html();
+      var albums_template = Handlebars.compile(source);
+      var html = albums_template(gallery);
+      $('#content').html(html);
+    </script>
+
+
   </body>
 </html>
