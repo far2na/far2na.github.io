@@ -77,7 +77,7 @@
       <div class="row">
         {{#each albums}}
         <div class="col-xs-12 col-md-3">
-          <div class="thumbnail" data-id={{@index}}>
+          <div class="thumbnail album-thumbnail" data-id={{@index}}>
             <img src="{{thumbnail}}"/>
             <div class="caption">
               <h4>{{name}}</h4>
@@ -93,7 +93,7 @@
       <div class="row">
         {{#each photos}}
         <div class="col-xs-12 col-md-3">
-          <div class="thumbnail" data-id={{@index}}>
+          <div class="thumbnail photo-thumbnail" data-id={{@index}}>
             <img src="{{src}}"/>
             <div class="caption">
               <h4>{{title}}</h4>
@@ -143,26 +143,5 @@
       </div>
       </div>
     </script>
-
-    <script type="text/javascript">
-      /*var source = $('#albums-template').html();
-      var albums_template = Handlebars.compile(source);
-      var html = albums_template(gallery);
-      $('#content').html(html);*/
-      /*var source = $('#photos-template').html();
-      var photos_template = Handlebars.compile(source);
-      var html = photos_template(gallery.albums[1]);
-      $('#content').html(html);*/
-      /*var source = $('#photo-template').html();
-      var photo_template = Handlebars.compile(source);
-      var html = photo_template(gallery.albums[1].photos[0]);
-      $('#content').html(html);*/
-      var source = $('#slideshow-template').html();
-      var slideshow_template = Handlebars.compile(source);
-      var html = slideshow_template(gallery.albums[1]);
-      $('#content').html(html);
-    </script>
-
-
   </body>
 </html>
