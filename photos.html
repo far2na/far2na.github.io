@@ -39,17 +39,20 @@
   			</div>
   			<div class="collapse navbar-collapse" id="main_navbar">
 	  			<ul class="nav navbar-nav">
-            <li><a href="./index.html">Tasklist</a></li>
-            <li><a href="./task.html">Task</a></li>
-            <li class="dropdown"  class="active">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Photos<span class="caret"></span></a>
-              <ul class="dropdown-menu">
-                <li  class="active"><a href="./photos.html">List</a></li>
-                <li><a href="#">Slideshow</a></li>
-              </ul>
-            </li>
-            <li><a href="./about.html">About</a></li>
+		            <li><a href="./index.html">Tasklist</a></li>
+		            <li><a href="./task.html">Task</a></li>
+		            <li class="dropdown"  class="active">
+		              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Photos<span class="caret"></span></a>
+		              <ul class="dropdown-menu">
+		                <li  class="active"><a href="./photos.html">List</a></li>
+		                <li><a href="#">Slideshow</a></li>
+		              </ul>
+		            </li>
+		            <li><a href="./about.html">About</a></li>
 	  			</ul>
+	  			<div class="navbar-form navbar-right">
+			      <input id="searchbox" type="text" class="form-control" placeholder="Search...">
+			    </div>
   			</div>
   		</div>
   	</nav>
@@ -73,7 +76,7 @@
       <div>
       	{{#each images}}
       	<div class="col-xs-12 col-md-3">
-	      	<div class="thumbnail">
+	      	<div class="thumbnail" data-id={{@index}}>
 		        <img src="{{src}}"/>
 		        <div class="caption">
 		        	<h3>{{title}}</h3>
@@ -130,13 +133,39 @@
       	} 
       	]
       };
+      /*templates*/
       var source   = $("#modal-template").html();
       var modal_template = Handlebars.compile(source);
-
       source   = $("#image-template").html();
       var template = Handlebars.compile(source);
       var html = template(data);
       $('#content').html(html);
+
+
+      /*handlers*/
+      $(".thumbnail").click(function (event) {
+      	var imgId = $(this).data("id");
+      	var html = modal_template(data.images[imgId]);
+      	$('#content').html(html);
+      	$('#imageModal').modal("show");
+      });
+      $('#searchbox').keypress(function (e) {
+      	if (e.which == 13) {
+      		var text = $('#searchbox').val();
+      		var filteredData = {
+      			images: data.images.filter(function (d) {
+      				if (d.title.toLowerCase().search(text.toLowerCase()) > -1) {
+      					return true;
+      				}
+      				return false;
+      			})
+      		};
+      		var html = template(filteredData);
+      		$('#content').html(html);
+      	}
+      });
+
+      /*functions*/
       function showModal() {
       	var html = modal_template(data.images[0]);
       	$('#content').html(html);
